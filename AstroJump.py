@@ -141,7 +141,7 @@ class Player():
 						self.vel_y = -20
 						jump_fx.play()
 
-		# mengecek apakah karakter telat lompat dan melewati batas layar atas
+		# mengecek apakah karakter telah lompat dan melewati batas layar atas
 		if self.rect.top <= SCROLL_THRESH:
 			if self.vel_y < 0:
 				scroll = -dy
