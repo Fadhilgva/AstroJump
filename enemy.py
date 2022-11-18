@@ -3,6 +3,7 @@ import random
 
 class Enemy(pygame.sprite.Sprite):
 	def __init__(self, SCREEN_WIDTH, y, sprite_sheet, scale):
+		# Proses Inheritance
 		pygame.sprite.Sprite.__init__(self)
 
 		# mendefinisikan variable
@@ -10,6 +11,8 @@ class Enemy(pygame.sprite.Sprite):
 		self.frame_index = 0
 		self.update_time = pygame.time.get_ticks()
 		self.direction = random.choice([-1, 1])
+
+		# menetapkan arah image menurut arah muncul rintangan
 		if self.direction == 1:
 			self.flip = True
 		else:
@@ -23,10 +26,11 @@ class Enemy(pygame.sprite.Sprite):
 			image.set_colorkey((0, 0, 0))
 			self.animation_list.append(image)
 		
-		# membuat objek persegi dari gambar
+		# membuat rectangle dari gambar
 		self.image = self.animation_list[self.frame_index]
 		self.rect = self.image.get_rect()
 
+		# menetapkan arah muncul rintangan
 		if self.direction == 1:
 			self.rect.x = 0
 		else:
@@ -47,7 +51,7 @@ class Enemy(pygame.sprite.Sprite):
 		if self.frame_index >= len(self.animation_list):
 			self.frame_index = 0
 
-		# pergerakan rintangan
+		# menggerakan posisi rintangan
 		self.rect.x += self.direction * 2
 		self.rect.y += scroll
 
