@@ -266,12 +266,12 @@ while run:
 		platform_group.update(scroll)
 
 		# membuat rintangan sesuai kondisi
-		if len(obstacle_group) == 0 and score > 1500:
+		if len(obstacle_group) == 0 and score > 150:
 			obs = random.randint(80, 200)
 			enemy = Enemy(SCREEN_WIDTH, obs, ufo_sheet, 2)
 			obstacle_group.add(enemy)
 
-			if score > 2000:
+			if score > 200:
 				obs1 = random.randint(80, 200)
 				enemy2 = Enemy(SCREEN_WIDTH, obs1, spacecraft_sheet, 2)
 				obstacle_group.add(enemy2)
@@ -329,17 +329,16 @@ while run:
 				draw_text('Score : ' + str(score), font_big, PANEL, 135, 250)
 				draw_text('Press space to play again', font_big, PANEL, 50, 300)
 
+				# memperbarui jika file sudah ada atau membuat file baru dan write high score
+				high_score = score
+				with open('score.txt', 'w') as file:
+					file.write(str(high_score))
+
 			# kondisi jika tidak melebihi high score
 			elif score < high_score:
 				draw_text('Game Over!', font_big, PANEL, 125, 200)
 				draw_text('Score : ' + str(score), font_big, PANEL, 140, 250)
 				draw_text('Press space to play again', font_big, PANEL, 50, 300)
-
-			# memperbarui jika file sudah ada atau membuat file baru dan write high score
-			if score > high_score:
-				high_score = score
-				with open('score.txt', 'w') as file:
-					file.write(str(high_score))
 
 			# jika space ditekan, game akan dimulai kembali
 			key = pygame.key.get_pressed()
